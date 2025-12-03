@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>새 프로젝트 등록</title>
+  <link rel="stylesheet" href="/css/nav.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+
+  <main class="page">
+    <section class="card" style="margin-top:-24px;max-width:600px;margin-left:auto;margin-right:auto;">
+      <h1 class="section-title">새 프로젝트 등록</h1>
+
+      <form method="POST" action="/projects/new">
+        <div class="form-group">
+          <label>제목 *</label>
+          <input class="form-control" type="text" name="title" required />
+        </div>
+
+        <div class="form-group">
+          <label>요약</label>
+          <input class="form-control" type="text" name="summary" />
+        </div>
+
+        <div class="form-group">
+          <label>상세 설명</label>
+          <textarea name="description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>사용 기술 스택</label>
+          <input class="form-control" type="text" name="tech_stack" placeholder="예) Java, Node.js, MySQL" />
+        </div>
+
+        <div class="form-group">
+          <label>GitHub URL</label>
+          <input class="form-control" type="url" name="github_url" />
+        </div>
+
+        <div class="form-group">
+          <label>Demo URL</label>
+          <input class="form-control" type="url" name="demo_url" />
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <div class="form-group" style="flex:1;">
+            <label>시작일</label>
+            <input class="form-control" type="date" name="start_date" />
+          </div>
+          <div class="form-group" style="flex:1;">
+            <label>종료일</label>
+            <input class="form-control" type="date" name="end_date" />
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <button type="submit" class="btn">저장</button>
+          <a href="/projects" class="btn btn-secondary btn-small">취소</a>
+        </div>
+      </form>
+    </section>
+
+    <div class="footer">
+      © <%= new Date().getFullYear() %> My Portfolio
+    </div>
+  </main>
+</body>
+</html>

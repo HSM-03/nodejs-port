@@ -1,0 +1,65 @@
+/* 헤더/네비게이션 전용 CSS */
+
+.header {
+  background: linear-gradient(to right, #06b6d4, #4f46e5);
+  padding: 16px 0;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.6);
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0b1120;
+}
+
+.nav a {
+  margin-left: 24px;
+  color: #f9fafb;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* 로그인 정보 & 로그아웃 버튼 */
+.login-info {
+  margin-left: 16px;
+  font-size: 13px;
+  color: #f9fafb;
+}
+
+.nav-logout {
+  background-color: #374151;
+  color: #f9fafb;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  border: 1px solid #4b5563;
+  margin-left: 6px;
+  transition: 0.2s ease;
+}
+
+.nav-logout:hover {
+  background-color: #111827;
+  border-color: #1f2937;
+}
+
+.nav-login {
+  margin-left: 24px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  font-size: 12px;
+}

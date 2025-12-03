@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio - Home</title>
+  <link rel="stylesheet" href="/css/nav.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+
+  <main class="page">
+    <section class="card" style="margin-top:-24px;">
+      <% if (user) { %>
+        <h1 class="hero-title"><%= user.name %></h1>
+        <p class="hero-sub"><%= user.intro || '간단한 자기소개 문구를 작성해 주세요.' %></p>
+        <p style="margin-top:10px;font-size:13px;">
+          📧 <%= user.email %> &nbsp;&nbsp;📱 <%= user.phone %>
+        </p>
+        <% if (user.aboutme) { %>
+          <p style="margin-top:12px;font-size:13px;line-height:1.5;"><%= user.aboutme %></p>
+        <% } %>
+        <div style="margin-top:18px;">
+          <a href="/projects" class="btn">프로젝트 보러가기</a>
+          <a href="/contact" class="btn btn-secondary">문의 / 연락하기</a>
+        </div>
+      <% } else { %>
+        <h1 class="hero-title">포트폴리오 홈페이지</h1>
+        <p class="hero-sub">사용자 정보가 아직 없습니다. users 테이블에 데이터를 넣어 주세요.</p>
+      <% } %>
+    </section>
+
+    <section style="margin-top:22px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <h2 class="section-title">최근 프로젝트</h2>
+        <% if (loginUser) { %>
+          <a href="/projects/new" class="btn btn-small">+ 새 프로젝트</a>
+        <% } %>
+      </div>
+
+      <% if (projects && projects.length > 0) { %>
+        <div class="projects-grid">
+          <% projects.forEach(p => { %>
+            <article class="card">
+              <div class="project-title"><%= p.title %></div>
+              <% if (p.summary) { %>
+                <div class="project-summary"><%= p.summary %></div>
+              <% } %>
+
+              <% if (p.tech_stack) { %>
+                <div class="project-tech">⚙ <%= p.tech_stack %></div>
+              <% } %>
+
+              <div>
+                <% if (p.github_url) { %>
+                  <a href="<%= p.github_url %>" target="_blank" class="btn btn-small">GitHub</a>
+                <% } %>
+                <% if (p.demo_url) { %>
+                  <a href="<%= p.demo_url %>" target="_blank" class="btn btn-small btn-secondary">Demo</a>
+                <% } %>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+      <% } else { %>
+        <div class="card">
+          <p style="font-size:13px;color:#9ca3af;">등록된 프로젝트가 없습니다.</p>
+        </div>
+      <% } %>
+    </section>
+
+    <div class="footer">
+      © <%= new Date().getFullYear() %> My Portfolio
+    </div>
+  </main>
+</body>
+</html>

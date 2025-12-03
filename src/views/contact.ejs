@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="/css/nav.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+
+  <main class="page">
+    <section class="card" style="margin-top:-24px;">
+      <h1 class="section-title">문의 / 방명록</h1>
+      <p style="font-size:13px;color:#9ca3af;margin-bottom:16px;">
+        궁금한 점이나 하고 싶은 말을 남겨 주세요. 😊
+      </p>
+
+      <form method="POST" action="/contact">
+        <div class="form-group">
+          <label>이름</label>
+          <input class="form-control" type="text" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label>이메일</label>
+          <input class="form-control" type="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label>메시지</label>
+          <textarea name="message" required></textarea>
+        </div>
+
+        <button type="submit" class="btn">보내기</button>
+        <a href="/" class="btn btn-secondary btn-small">홈으로</a>
+      </form>
+    </section>
+
+    <div class="footer">
+      © <%= new Date().getFullYear() %> My Portfolio
+    </div>
+  </main>
+</body>
+</html>

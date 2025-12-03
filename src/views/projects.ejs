@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio - Projects</title>
+  <link rel="stylesheet" href="/css/nav.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+
+  <main class="page">
+    <section style="margin-top:-24px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <h1 class="section-title">프로젝트 목록</h1>
+        <% if (loginUser) { %>
+          <a href="/projects/new" class="btn btn-small">+ 새 프로젝트</a>
+        <% } %>
+      </div>
+
+      <% if (projects && projects.length > 0) { %>
+        <div class="projects-grid">
+          <% projects.forEach(p => { %>
+            <article class="card">
+              <div class="project-title"><%= p.title %></div>
+
+              <% if (p.summary) { %>
+                <div class="project-summary"><%= p.summary %></div>
+              <% } %>
+
+              <% if (p.tech_stack) { %>
+                <div class="project-tech">⚙ <%= p.tech_stack %></div>
+              <% } %>
+
+              <div style="font-size:12px;color:#6b7280;margin-bottom:8px;">
+                <% if (p.start_date) { %>
+                  시작: <%= p.start_date.toISOString().slice(0,10) %>
+                <% } %>
+                <% if (p.end_date) { %>
+                  · 종료: <%= p.end_date.toISOString().slice(0,10) %>
+                <% } %>
+              </div>
+
+              <div>
+                <% if (p.github_url) { %>
+                  <a href="<%= p.github_url %>" target="_blank" class="btn btn-small">GitHub</a>
+                <% } %>
+
+                <% if (p.demo_url) { %>
+                  <a href="<%= p.demo_url %>" target="_blank" class="btn btn-small btn-secondary">Demo</a>
+                <% } %>
+
+                <% if (typeof loginUser !== 'undefined' && loginUser) { %>
+                  <a href="/projects/<%= p.project_id %>/edit" class="btn btn-small btn-secondary">
+                    수정
+                  </a>
+
+                  <form method="POST"
+                        action="/projects/<%= p.project_id %>/delete"
+                        style="display:inline;">
+                    <button type="submit"
+                            class="btn btn-small btn-danger"
+                            onclick="return confirm('정말 삭제할까요?');">
+                      삭제
+                    </button>
+                  </form>
+                <% } %>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+      <% } else { %>
+        <div class="card">
+          <p style="font-size:13px;color:#9ca3af;">아직 등록된 프로젝트가 없습니다.</p>
+        </div>
+      <% } %>
+    </section>
+
+    <div class="footer">
+      © <%= new Date().getFullYear() %> My Portfolio
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">My Portfolio</div>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/projects">Projects</a>
+      <a href="/contact">Contact</a>
+
+      <% if (loginUser) { %>
+        <span class="login-info">
+          | <%= loginUser.name %> 님
+          <a href="/auth/logout" class="nav-logout">로그아웃</a>
+        </span>
+      <% } else { %>
+        <a href="/auth/login" class="nav-login">Login</a>
+      <% } %>
+    </nav>
+  </div>
+</header>
